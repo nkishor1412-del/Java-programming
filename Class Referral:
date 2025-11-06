@@ -1,0 +1,27 @@
+package referral; 
+ 
+public class Referral { 
+    private int refId; 
+    private User inviter; 
+    private String inviteeEmail; 
+    private boolean status; 
+    private int bonus; 
+ 
+    public Referral(int refId, User inviter, String inviteeEmail, int bonus) { 
+        this.refId = refId; 
+        this.inviter = inviter; 
+        this.inviteeEmail = inviteeEmail; 
+        this.bonus = bonus; 
+        this.status = false; 
+    } 
+ 
+    public void completeSignup() { 
+        this.status = true; 
+        inviter.addPoints(bonus); 
+    } 
+    @Override 
+    public String toString() { 
+        return "Referral by " + inviter.getName() + " to " + inviteeEmail + 
+               " Status: " + (status ? "Completed" : "Pending"); 
+    } 
+}
