@@ -1,0 +1,29 @@
+ 
+public class User { 
+    private int userId; 
+    private String name; 
+    private String email; 
+    private String referralCode; 
+    private int points; 
+ 
+    public User(int userId, String name, String email, String referralCode) { 
+        this.userId = userId; 
+        this.name = name; 
+        this.email = email; 
+        this.referralCode = referralCode; 
+        this.points = 0; 
+    } 
+    public int getUserId() { return userId; } 
+    public String getName() { return name; } 
+    public String getEmail() { return email; } 
+    public String getReferralCode() { return referralCode; } 
+    public int getPoints() { return points; } 
+ 
+    public void addPoints(int points) { 
+        this.points += points; 
+    } 
+    @Override 
+    public String toString() { 
+        return name + " (" + email + ") Points: " + points; 
+    } 
+}
