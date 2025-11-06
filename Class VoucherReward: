@@ -1,0 +1,13 @@
+package referral; 
+ 
+public class VoucherReward extends Reward { 
+    public VoucherReward(int rewardId, String name, int pointsRequired, int inventory) { 
+        super(rewardId, name, pointsRequired, inventory); 
+    } 
+ 
+    @Override 
+    public boolean redeem(User user) { 
+        System.out.println("Voucher will be emailed to " + user.getEmail()); 
+        return super.redeem(user); 
+    } 
+}
