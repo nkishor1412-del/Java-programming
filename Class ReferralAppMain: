@@ -1,0 +1,36 @@
+package referral; 
+ 
+public class ReferralAppMain { 
+    public static void main(String[] args) { 
+        ReferralService service = new ReferralService(); 
+ 
+        // Create Users 
+        User u1 = new User(1, "Alice", "alice@gmail.com", "AL123"); 
+        User u2 = new User(2, "Bob", "bob@gmail.com", "BO456"); 
+        service.addUser(u1); 
+        service.addUser(u2); 
+ 
+        // Generate and track referrals 
+        Referral r1 = new Referral(101, u1, "charlie@gmail.com", 50); 
+        service.trackSignup(r1); 
+ 
+        // Add rewards 
+        Reward voucher = new VoucherReward(201, "Amazon Voucher", 100, 5); 
+        Reward gift = new GiftReward(202, "Coffee Mug", 50, 2); 
+        service.addReward(voucher); 
+        service.addReward(gift); 
+ 
+        // Award points 
+        service.awardPoints(u2, 60); 
+ 
+        // Redeem rewards 
+        service.redeemReward(u1, gift);     // Alice redeems Mug 
+        service.redeemReward(u2, voucher);  // Bob tries Voucher 
+ 
+        // Print leaderboard 
+        service.printLeaderboard(); 
+    } 
+}. 
+ 
+ 
+ 
