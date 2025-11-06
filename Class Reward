@@ -1,0 +1,38 @@
+package referral; 
+ 
+public class Reward { 
+    protected int rewardId; 
+    protected String name; 
+    protected int pointsRequired; 
+    protected int inventory; 
+ 
+    public Reward(int rewardId, String name, int pointsRequired, int inventory) { 
+        this.rewardId = rewardId; 
+        this.name = name; 
+        this.pointsRequired = pointsRequired; 
+        this.inventory = inventory; 
+    } 
+ 
+    public boolean redeem(User user) { 
+        if (inventory > 0 && user.getPoints() >= pointsRequired) { 
+            inventory--; 
+            return true; 
+        } 
+        return false; 
+    } 
+ 
+    // Overloaded redeem method 
+    public boolean redeem(User user, String promoCode) { 
+        System.out.println("Promo applied: " + promoCode); 
+        return redeem(user); 
+    } 
+ 
+    public String getName() { return name; } 
+    public int getPointsRequired() { return pointsRequired; } 
+ 
+    @Override 
+    public String toString() { 
+        return name + " [Points Required: " + pointsRequired + ", Inventory: " + inventory + 
+"]"; 
+    } 
+} 
