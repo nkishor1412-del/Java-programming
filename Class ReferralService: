@@ -1,0 +1,39 @@
+ 
+package referral; 
+import java.util.*; 
+public class ReferralService { 
+    private Map<String, User> users = new HashMap<>(); 
+    private List<Referral> referrals = new ArrayList<>(); 
+    private List<Reward> rewards = new ArrayList<>(); 
+    public void addUser(User user) { 
+        users.put(user.getReferralCode(), user); 
+    } 
+    public String generateCode(User user) { 
+        return user.getReferralCode(); 
+    } 
+    public void trackSignup(Referral referral) { 
+        referral.completeSignup(); 
+        referrals.add(referral); 
+    } 
+ 
+    public void addReward(Reward reward) { 
+        rewards.add(reward); 
+    } 
+ 
+    public void awardPoints(User user, int points) { 
+        user.addPoints(points); 
+    } 
+    public void redeemReward(User user, Reward reward) { 
+        if (reward.redeem(user)) { 
+            System.out.println(user.getName() + " redeemed " + reward.getName()); 
+        } else { 
+            System.out.println("Redemption failed for " + user.getName()); 
+        } 
+    } 
+    public void printLeaderboard() { 
+        System.out.println("\n=== Leaderboard ==="); 
+        users.values().stream() 
+                .sorted((u1, u2) -> u2.getPoints() - u1.getPoints()) 
+                .forEach(System.out::println); 
+    } 
+} 
